@@ -8,7 +8,6 @@ pull:
 	docker image pull itsteckel/vu:latest
 
 run:
-	-mkdir volume
 	-docker stop vu
 	-docker rm vu
 	docker run --name vu -it \
@@ -17,4 +16,6 @@ run:
 
 clean:
 	docker system prune
+
+
 
