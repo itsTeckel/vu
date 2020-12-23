@@ -1,5 +1,5 @@
 <center>
-![](logo.png)
+![](https://github.com/itsTeckel/vu/blob/master/logo.png?raw=true)
 </center>
 # Venice unleashed linux dedicated server in Docker
 
