@@ -1,6 +1,5 @@
-<center>
-![](https://github.com/itsTeckel/vu/blob/master/logo.png?raw=true)
-</center>
+![alt text](https://github.com/itsTeckel/vu/blob/master/logo.png?raw=true)
+
 # Venice unleashed linux dedicated server in Docker
 
 This project represents the code used in order to run the Venice unleashed inside Docker. It builds on top of the [wine](https://github.com/itsTeckel/wine) base image and adds Venice unleashed specific code in order to run it.
