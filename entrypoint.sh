@@ -21,7 +21,7 @@ if [ -f "/vu/client/vu.com" ]; then
     echo "Skipping update as '/vu/client/vu.com' exists."
 else 
 	echo "Updating VU"
-    cd /vu/client && wget https://veniceunleashed.net/files/vu.zip && unzip vu.zip && rm vu.zip
+    cd /vu/client && wget https://veniceunleashed.net/files/vu.zip && unzip -o vu.zip && rm vu.zip
 fi
 
 if [ -f "/vu/instance/server.key" ]; then

@@ -4,7 +4,8 @@
 
 # Venice Unleashed Linux Dedicated Server
 
-![](https://img.shields.io/docker/pulls/itsteckel/vu.svg)
+![https://hub.docker.com/repository/docker/itsteckel/vu](https://img.shields.io/docker/image-size/itsteckel/vu.svg)
+![https://hub.docker.com/repository/docker/itsteckel/vu](https://img.shields.io/docker/pulls/itsteckel/vu.svg)
 
 This project represents the code used in order to run the Venice unleashed inside Docker. It builds on top of the [wine](https://github.com/itsTeckel/wine) base image and adds Venice unleashed specific code in order to run it.
 
@@ -28,6 +29,10 @@ In order to run the VU server you have to activate the game. This process requir
 |------------------|----------------|
 | O_EMAIL| Origin account e-mail    | 
 | O_PASSWORD| Origin account password |
+
+### Add server.key
+
+Please go to: [veniceunleashed.net/key-create](https://veniceunleashed.net/key-create) then generate and download the server.key. Make sure this is saved in the instance directory. (/vu/instance/server.key)
 
 
 ### Configuring ports
