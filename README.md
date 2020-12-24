@@ -4,8 +4,8 @@
 
 # Venice Unleashed Linux Dedicated Server
 
-![https://hub.docker.com/repository/docker/itsteckel/vu](https://img.shields.io/docker/image-size/itsteckel/vu.svg)
-![https://hub.docker.com/repository/docker/itsteckel/vu](https://img.shields.io/docker/pulls/itsteckel/vu.svg)
+[![Image size](https://img.shields.io/docker/image-size/itsteckel/vu.svg)](https://hub.docker.com/repository/docker/itsteckel/vu)
+[![Docker pulls](https://img.shields.io/docker/pulls/itsteckel/vu.svg)](https://hub.docker.com/repository/docker/itsteckel/vu)
 
 This project represents the code used in order to run the Venice unleashed inside Docker. It builds on top of the [wine](https://github.com/itsTeckel/wine) base image and adds Venice unleashed specific code in order to run it.
 

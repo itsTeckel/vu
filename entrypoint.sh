@@ -23,6 +23,7 @@ else
 	echo "Updating VU"
     cd /vu/client && wget https://veniceunleashed.net/files/vu.zip && unzip -o vu.zip && rm vu.zip
 fi
+chmod 777 -R /vu/client/
 
 if [ -f "/vu/instance/server.key" ]; then
     echo "Found server.key"
@@ -38,14 +39,10 @@ if [ -z "${O_EMAIL}" ] &&  [ -z "${O_PASSWORD}" ]; then
   sleep 2
   exit 1
 else
-  echo "Activating with ${O_EMAIL} and ${O_PASSWORD}"
+  echo "Activating with ${O_EMAIL}"
   xvfb-run -e /dev/stdout wine /vu/client/vu.com -gamepath /vu/bf3 -activate -o_mail $O_EMAIL -o_pass $O_PASSWORD
 fi
 
-echo "Starting VU"
-xvfb-run -e /dev/stdout wine /vu/client/vu.com -gamepath /vu/bf3 -serverInstancePath /vu/instance -server -dedicated -headless $TICK -listen $LISTEN -mHarmonyPort $HARMONYPORT -RemoteAdminPort $RCONPORT
-# #Reduce memory footprint
-# pkill -f services.exe
-# pkill -f explorer.exe
-# pkill -f plugplay.exe
+echo "Starting VU $(winepath -w /vu/instance)"
+xvfb-run -e /dev/stdout wine /vu/client/vu.com -gamepath /vu/bf3 -serverInstancePath "$(winepath -w /vu/instance)" -server -dedicated -headless $TICK -high120 -listen $LISTEN -mHarmonyPort $HARMONYPORT -RemoteAdminPort $RCONPORT
 /wine/waitonprocess.sh wineserver
