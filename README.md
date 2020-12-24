@@ -111,9 +111,6 @@ A normal output does show some Wine errors:
 Skipping update as '/vu/client/vu.com' exists.
 Found server.key
 Activating with ******@****.com
-0040:err:ole:start_rpcss Failed to open RpcSs service
-Please wait while your game is being activated. This process can take up to one minute...Your game has been successfully activated!Starting VU
-XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":99"      after 185 requests (185 known processed) with 0 events remaining.XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":99"0070:err:ole:start_rpcss Failed to open RpcSs service
 wine: Unhandled page fault on read access to 000000B8 at address 1000653A (thread 0090), starting debugger...
 [2020-12-24 00:24:19+00:00] [info] Server Instance directory: /vu/instance
 [2020-12-24 00:24:19+00:00] [info] Initializing the VeniceEXT engine v1.0.8...
@@ -149,17 +146,10 @@ wine: Unhandled page fault on read access to 000000B8 at address 1000653A (threa
 [2020-12-24 00:24:26+00:00] [info] Update check complete. No new updates available.
 ```
 
-### Errors
+### Not starting up
 
-Venice currently has the tendency to show errors in a window. If this happens your log will end like this:
-```
-0048:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hr 0x80004002
-0048:err:ole:CoMarshalInterface Failed to marshal the interface {6d5140c1-7436-11ce-8034-00aa006009fa}, hr 0x80004002
-0048:err:ole:apartment_get_local_server_stream Failed: 0x80004002
-0050:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hr 0x80004002
-0050:err:ole:CoMarshalInterface Failed to marshal the interface {6d5140c1-7436-11ce-8034-00aa006009fa}, hr 0x80004002
-0050:err:ole:apartment_get_local_server_stream Failed: 0x80004002
-0050:err:ole:start_rpcss Failed to open RpcSs service
-```
+Follow these steps to debug your server not starting.
 
-Please make sure that the server works well on Windows first. Then try editing the entrypoint.sh and replacing the ```xvfb-run -e /dev/stdout wine``` with ```wine```, which might give you more hints as to what goes wrong. 
+- Please make sure that the server works well on Windows first. For instance that the origin credentials and server.key are valid.
+- Make sure the container is able to read your Battlefield files. Run ```chmod``` to set the right permissions.
+- run ```DISPLAY=:1 xwd -root -silent | convert xwd:- png:/vu/client/screenshot.png``` in your docker container to render the X11 windows. It'll save it to /vu/client/screenshot.png.  This might give you more of an indication as to what is going wrong.
