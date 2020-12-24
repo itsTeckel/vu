@@ -81,8 +81,7 @@ docker run --name venice -it \
 Or run it using docker-compose. As you can see we set the required enviroment variables and then map the game files, instance and client directory. We also bind the ports the game server is running on.
 
 ```yaml
----
-version: 3
+version: "3"
 services:
   venice:
     image: itsteckel/vu:latest
