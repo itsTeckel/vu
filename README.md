@@ -61,7 +61,7 @@ The final step is bringing it all together. Either use docker run, docker compos
 Run the following command. As you can see we set the required enviroment variables and then map the game files, instance and client directory. We also bind the ports the game server is running on.
 
 ```bash
-docker run --name vu -it \
+docker run --name venice -it \
 	-d itsteckel/vu:latest \
 	-e O_EMAIL='<email>' \
 	-e O_PASSWORD='<password>' \
@@ -84,7 +84,7 @@ Or run it using docker-compose. As you can see we set the required enviroment va
 ---
 version: 3
 services:
-  steam:
+  venice:
     image: itsteckel/vu:latest
     restart: unless-stopped
     ports:
