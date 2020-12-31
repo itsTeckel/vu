@@ -6,6 +6,7 @@
 
 [![Image size](https://img.shields.io/docker/image-size/itsteckel/vu.svg)](https://hub.docker.com/repository/docker/itsteckel/vu)
 [![Docker pulls](https://img.shields.io/docker/pulls/itsteckel/vu.svg)](https://hub.docker.com/repository/docker/itsteckel/vu)
+[![Github](https://img.shields.io/static/v1?label=source&message=githhub&color=green)](https://github.com/itsTeckel/vu)
 
 This project represents the code used in order to run the Venice unleashed inside Docker. It builds on top of the [wine](https://github.com/itsTeckel/wine) base image and adds Venice unleashed specific code in order to run it.
 
@@ -101,10 +102,31 @@ services:
       - bf3:/vu/bf3
       - instance:/vu/instance
       - client:/vu/client
+volumes:
+  bf3:
+  instance:
+  client:
 ```
 
+Note: As getting data into the docker volumes is a little harder than binding. I recommend to bind the game data rather than use the docker volumes for initial testing/debugging.
+
+```yaml
+...
+    volumes:
+      - /path/host/bf3:/vu/bf3
+      - /path/host/instance:/vu/instance
+      - /path/host/client:/vu/client
+```
 
 ## Debugging
+
+### Cannot connect. Server resolves to local host (127.0.0.1)
+
+If you're hoping to host the container and connect to it locally then you'll run into this problem. Currently there's a error in how VU resolves the external IP when the container is in bridge network mode and you connect to it from your LAN. Try running your container in **host mode** if you’re hosting it in your local network. So pass --network host in docker run. See: [docs.docker.com/network/host](https://docs.docker.com/network/host/).
+
+The container doesn’t need this when you host it in a data center elsewhere. Passing along a -joinaddr to vu.com or vu.exe doesn’t help either by the way.
+
+### Crashes
 
 A normal output does show some Wine errors:
 ```
@@ -145,6 +167,10 @@ wine: Unhandled page fault on read access to 000000B8 at address 1000653A (threa
 [2020-12-24 00:24:24+00:00] [info] Checking for updates...
 [2020-12-24 00:24:26+00:00] [info] Update check complete. No new updates available.
 ```
+
+### crashing regularly
+
+Please check your mods. Try running the server without any mods. Mods might be trying to write/read memory or do operations at certain moments during the game (loading) which can make the game server crash.
 
 ### Not starting up
 
